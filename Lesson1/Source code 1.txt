@@ -1,0 +1,56 @@
+const scores = [93, 90, 98, 89, 85];
+
+console.log("student scores:");
+for (let i = 0; i < scores.length; i++) {
+    console.log(scores[i]);
+}
+function analyzeScore(score) {
+    
+   if (score >= 90 && score <= 100) {
+       return { rating: "excellent", status: "passed"};
+   } else if (score >= 80 && score <= 89){
+       return { rating: "very good", status: "passed" };
+   } else if (score >= 75 && score <= 79){
+       return { rating: "good", status: "passed" };
+   } else {
+       return { rating: "", status: "failed" };
+   }
+}
+
+console.log();
+
+let totalScore = 0;
+let passedCount = 0;
+let failedCount = 0;
+let highestScore =scores [0];
+let lowestScore = scores [0];
+
+scores.forEach((score,index) => {
+    const { rating, status } = analyzeScore(score);
+
+    if (status === "passed") {
+        passedCount++;
+        console.log(`student ${index + 1}: ${score} - ${rating} - ${status}`);
+    } else {
+        failedCount++;
+        console.log(`student ${index + 1}: ${score} - ${status}`);
+    } 
+
+    totalScore += score;
+
+     if (score > highestScore) highestScore = score;
+     if (score < lowestScore) lowestScore = score;
+
+});
+
+const averageScore = totalScore / scores.length;
+console.log();
+
+console.log(`total score: ${totalScore}`);
+console.log(`average score: ${averageScore}`);
+console.log(`highest score: ${highestScore}`);
+console.log(`lowest score: ${lowestScore}`);
+console.log(`Passed: ${passedCount}`);
+console.log(`Failed: ${failedCount}`);
+
+
